@@ -9,15 +9,15 @@ $tile-border-radius: 3px;
 
 $mobile-threshold: $field-width + 20px;
 
-$text-color: #776E65;
-$bright-text-color: #f9f6f2;
+$text-color: #e9e4ff;
+$bright-text-color: #ffffff;
 
-$tile-color: #eee4da;
-$tile-gold-color: #edc22e;
+$tile-color: #e9e4ff;
+$tile-gold-color: #ff6b9a;
 $tile-gold-glow-color: lighten($tile-gold-color, 15%);
 
 $game-container-margin-top: 40px;
-$game-container-background: #bbada0;
+$game-container-background: #302b4f;
 
 $transition-speed: 100ms;
 
@@ -25,9 +25,9 @@ html, body {
   margin: 0;
   padding: 0;
 
-  background: #faf8ef;
+  background: #1b1830;
   color: $text-color;
-  font-family: "Clear Sans", "Helvetica Neue", Arial, sans-serif;
+  font-family: "DM Sans", "Clear Sans", "Helvetica Neue", Arial, sans-serif;
   font-size: 18px;
 }
 
@@ -414,6 +414,25 @@ hr {
   }
 }
 
+// Galaxy palette: starlight begins cool, then becomes a nebula and supernova.
+.tile .tile-inner {
+  font-family: "Archivo Black", "DM Sans", sans-serif;
+  color: #1b1830;
+}
+
+.tile.tile-2 .tile-inner { background: linear-gradient(135deg, #f3f5ff, #dce2ff); box-shadow: none; }
+.tile.tile-4 .tile-inner { background: linear-gradient(135deg, #d8ddff, #b7c0ff); box-shadow: none; }
+.tile.tile-8 .tile-inner { background: linear-gradient(135deg, #b8caff, #8fa6f5); color: #101633; }
+.tile.tile-16 .tile-inner { background: linear-gradient(135deg, #91a4ff, #716de0); color: #ffffff; }
+.tile.tile-32 .tile-inner { background: linear-gradient(135deg, #8875e8, #7851bd); color: #ffffff; }
+.tile.tile-64 .tile-inner { background: linear-gradient(135deg, #b066d2, #773a9d); color: #ffffff; }
+.tile.tile-128 .tile-inner { background: linear-gradient(135deg, #de6fc3, #a43f92); color: #ffffff; box-shadow: 0 0 24px rgba(#de6fc3, .34); }
+.tile.tile-256 .tile-inner { background: linear-gradient(135deg, #f47f9d, #d75070); color: #ffffff; box-shadow: 0 0 26px rgba(#f47f9d, .38); }
+.tile.tile-512 .tile-inner { background: linear-gradient(135deg, #f4a261, #dd6d3e); color: #ffffff; box-shadow: 0 0 28px rgba(#f4a261, .42); }
+.tile.tile-1024 .tile-inner { background: linear-gradient(135deg, #ffd166, #e6a636); color: #3c2500; box-shadow: 0 0 30px rgba(#ffd166, .46); }
+.tile.tile-2048 .tile-inner { background: linear-gradient(135deg, #fff7bd, #f1cf4a); color: #3c2500; box-shadow: 0 0 36px rgba(#fff7bd, .68); }
+.tile.tile-super .tile-inner { background: linear-gradient(135deg, #f9f5ff, #b78cff); color: #201443; }
+
 @include keyframes(appear) {
   0% {
     opacity: 0;
@@ -545,5 +564,227 @@ hr {
     .lower {
       margin-top: 30px !important;
     }
+  }
+}
+
+// Deep-space UI treatment.
+html {
+  min-height: 100%;
+  background:
+    radial-gradient(ellipse at 18% 8%, rgba(#5340a8, .35), transparent 38%),
+    radial-gradient(ellipse at 88% 82%, rgba(#a13f94, .28), transparent 35%),
+    #050716;
+}
+
+body {
+  position: relative;
+  min-height: 100vh;
+  background: transparent;
+}
+
+body:before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: .72;
+  background-image:
+    radial-gradient(circle at 12% 18%, #ffffff 0 1px, transparent 1.5px),
+    radial-gradient(circle at 82% 10%, #c8d1ff 0 1px, transparent 1.5px),
+    radial-gradient(circle at 68% 68%, #ffffff 0 1px, transparent 1.5px),
+    radial-gradient(circle at 24% 82%, #d9c9ff 0 1px, transparent 1.5px);
+  background-size: 157px 173px, 211px 197px, 181px 229px, 263px 251px;
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+}
+
+h1.title {
+  letter-spacing: 1px;
+  text-shadow: 0 0 18px rgba(#9faeff, .42);
+}
+
+a {
+  color: #dfe5ff;
+}
+
+hr {
+  border-bottom-color: rgba(#a7b2ef, .38);
+}
+
+.score-container, .best-container {
+  background: linear-gradient(135deg, rgba(#262247, .94), rgba(#171631, .94));
+  color: #ffffff;
+  box-shadow: 0 7px 20px rgba(#000000, .18), inset 0 1px 0 rgba(#ffffff, .1);
+
+  &:after { color: #bfc9ff; }
+  .score-addition { color: #ffd166; }
+}
+
+.restart-button, .game-container .game-message a {
+  background: linear-gradient(135deg, #6956bd, #8d4d9f);
+  color: #ffffff;
+  box-shadow: 0 6px 16px rgba(#000000, .24);
+}
+
+.game-container {
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 78% 12%, rgba(#9270d5, .34), transparent 31%),
+    radial-gradient(circle at 14% 86%, rgba(#cd5eac, .26), transparent 35%),
+    linear-gradient(145deg, #11142f, #25204a);
+  box-shadow: 0 18px 48px rgba(#000000, .36), inset 0 0 0 1px rgba(#bfc9ff, .15);
+
+  &:before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: .72;
+    background-image:
+      radial-gradient(circle at 9% 15%, #ffffff 0 1px, transparent 1.5px),
+      radial-gradient(circle at 74% 22%, #d8ddff 0 1px, transparent 1.5px),
+      radial-gradient(circle at 39% 72%, #ffffff 0 1px, transparent 1.5px),
+      radial-gradient(circle at 88% 82%, #c8b5ff 0 1px, transparent 1.5px);
+    background-size: 97px 113px, 139px 127px, 179px 167px, 211px 193px;
+  }
+}
+
+.game-container .game-message {
+  background: rgba(#080a1d, .84);
+  color: #ffffff;
+
+  &.game-won {
+    background: rgba(#7b50ba, .9);
+  }
+}
+
+.grid-cell {
+  background: linear-gradient(145deg, rgba(#cbd3ff, .16), rgba(#6e5aaf, .19));
+  box-shadow: inset 0 1px 0 rgba(#ffffff, .08);
+}
+
+@keyframes star-drift {
+  from { background-position: 0 0, 0 0, 0 0, 0 0; }
+  to { background-position: 48px -72px, -38px 54px, 62px 39px, -51px -44px; }
+}
+
+@keyframes star-twinkle {
+  0%, 100% { opacity: .18; transform: scale(.92); }
+  50% { opacity: .48; transform: scale(1.04); }
+}
+
+// A small planet and orbit give the masthead a clear space-game identity.
+h1.title {
+  position: relative;
+  padding-left: 38px;
+
+  &:before, &:after {
+    content: "";
+    position: absolute;
+    pointer-events: none;
+  }
+
+  &:before {
+    top: 22px;
+    left: 4px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 28%, #ffffff 0 9%, #aec6ff 13%, #7664d9 52%, #31245f 100%);
+    box-shadow: 0 0 12px rgba(#9faeff, .8);
+  }
+
+  &:after {
+    top: 25px;
+    left: 0;
+    width: 30px;
+    height: 13px;
+    border: 1px solid rgba(#dce6ff, .72);
+    border-radius: 50%;
+    transform: rotate(-20deg);
+  }
+}
+
+.heading {
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(#b7c6ff, .17);
+}
+
+.above-game {
+  padding-top: 8px;
+}
+
+.game-container:after {
+  content: "";
+  position: absolute;
+  inset: 11%;
+  z-index: 0;
+  pointer-events: none;
+  border: 1px solid rgba(#c2b5ff, .16);
+  border-radius: 50%;
+  transform: rotate(-20deg);
+  box-shadow: 0 0 45px rgba(#9b7cff, .1), inset 0 0 36px rgba(#d66fbd, .08);
+}
+
+.tile .tile-inner {
+  position: relative;
+  overflow: hidden;
+  text-shadow: 0 1px 1px rgba(#000000, .16);
+
+  &:after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    opacity: .22;
+    background-image:
+      radial-gradient(circle at 18% 22%, #ffffff 0 1px, transparent 1.6px),
+      radial-gradient(circle at 78% 24%, #ffffff 0 1px, transparent 1.6px),
+      radial-gradient(circle at 42% 78%, #ffffff 0 1px, transparent 1.6px);
+    background-size: 37px 43px, 53px 47px, 61px 59px;
+  }
+}
+
+.tile-new .tile-inner:after {
+  animation: star-twinkle 900ms ease-in-out 200ms both;
+}
+
+body:before, .game-container:before {
+  animation: star-drift 70s linear infinite alternate;
+}
+
+@media screen and (max-width: 520px) {
+  .heading {
+    padding-bottom: 10px;
+  }
+
+  h1.title {
+    padding-left: 23px;
+
+    &:before {
+      top: 21px;
+      left: 1px;
+      width: 13px;
+      height: 13px;
+    }
+
+    &:after {
+      top: 23px;
+      left: -1px;
+      width: 20px;
+      height: 9px;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body:before, .game-container:before, .tile-new .tile-inner:after {
+    animation: none;
   }
 }
